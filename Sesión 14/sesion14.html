@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>SESION 14</title>
+</head>
+<body>
+
+    <div ng-app="myApp" ng-controller="formCtrl">
+      
+        <form ng-submit="submit()"> 
+            <label for="codigo"> Codigo:</label> <input id="codigo" type="text" ng-model="codigo">
+            <br><br>
+            <label for="horas">Horas: </label> <input id="horas" type="number" ng-model="horas">
+            <br><br>
+            <label for="tarifaHoras">Tarifa Horas:</label> <input id="tarifaHoras" type="number" ng-model="tarifaHoras">
+            <br><br>
+            <button type="submit">Calcular</button>
+            <p>Basico:{{salarioBasico}}</p>
+            <p>Descuento:{{descuento}}</p>
+            <p>Neto:{{salarioNeto}}</p>
+            
+            
+        </form>
+    </div>
+    <script>
+    
+    const app = angular.module('myApp',[]);
+
+    app.controller('formCtrl', ($scope) =>{
+        $scope.salarioBasico = 0
+        $scope.descuento = 0
+        $scope.salarioNeto = 0
+       
+        $scope.submit=() => {
+            $scope.salarioBasico = $scope.horas* $scope.tarifaHoras
+            $scope.descuento = obtenerDescuento($scope.salarioBasico)
+            $scope.salarioNeto = $scope.salarioBasico - $scope.descuento
+            };
+
+        });
+
+        const obtenerDescuento = (salario) => {
+            if(salario <= 500) {
+                return 0
+            }else if(salario > 500 && salario <= 1000){
+                return salario*0.02
+            }else if (salario > 1000 && salario <= 4000){
+                return salario*0.08
+            }else if (salario > 4000 && salario <= 8000){
+                return salario*0.15
+            }else if (salario > 8000 && salario <= 10000){
+                return salario*0.21
+            }else if(salario > 10000 ){
+                return salario*0.30
+            }
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
