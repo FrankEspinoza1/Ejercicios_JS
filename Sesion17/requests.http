@@ -1,0 +1,29 @@
+###
+POST http://localhost:9000/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"George Mendel",
+    "age":"81",
+    "email":"georgemendel@email.com"
+}
+
+###
+GET http://localhost:9000/api/users HTTP/1.1
+
+###
+GET http://localhost:9000/api/users/639ceb380b19085ecb1aeda2 HTTP/1.1
+
+###
+PUT  http://localhost:9000/api/users/639ceb380b19085ecb1aeda2 HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"George Mendel",
+    "age":"81",
+    "email":"georgemendel@email.com"
+}
+
+###
+DELETE  http://localhost:9000/api/users/639ceb380b19085ecb1aeda2 HTTP/1.1
+
