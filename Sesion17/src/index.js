@@ -3,11 +3,15 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const userRoutes = require('./routes/user');
 
+const cors = require('cors') 
+mongoose.set('strictQuery', true);
+
 const app = express();
 const port = process.env.PORT || 9000;
 
 //middleware
 app.use(express.json());
+app.use(cors());
 app.use('/api', userRoutes);
 
 //routes
